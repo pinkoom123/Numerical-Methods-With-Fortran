@@ -1,0 +1,34 @@
+#Physical pendulum using both the Euler and Velocity-Verlet methods
+
+#This code solves the motion of a physical pendulum using both the Euler and Velocity-Verlet methods, then outputs the results to files for analysis. Here’s a breakdown of each part and some key points:
+Code Explanation:
+
+    #Modules and Subroutines:
+        verlet_method: Implements the Velocity-Verlet algorithm for the pendulum. Updates position and velocity iteratively based on a(t)=−sin⁡(x)a(t)=−sin(x).
+        euler_method: Implements the basic Euler integration method. Updates position and velocity using the current velocity and acceleration, respectively.
+        write_to_file: Writes time, position, and velocity data to a specified file.
+
+    #Main Program (Differential_solver):
+        Initializes variables and arrays.
+        Calls euler_method and verlet_method to calculate the pendulum’s position and velocity over time.
+        Writes the results to euler.txt and verlet.txt for plotting or further analysis.
+
+#Key Parameters:
+
+    #Initial Conditions:
+        x0=1.0x0​=1.0: Initial position (radians).
+        t0=0.0t0​=0.0: Initial time.
+        v0=0.0v0​=0.0: Initial velocity.
+        dt=0.1dt=0.1: Time step.
+        tf=30.0tf=30.0: Final time.
+
+#Output Files:
+
+    euler.txt: Contains time, position, and velocity results from the Euler method.
+    verlet.txt: Contains results from the Velocity-Verlet method.
+
+#Instructions for Running the Code:
+
+    Compile the Fortran code using an appropriate compiler.
+    Run the compiled program, which will generate euler.txt and verlet.txt in the same directory.
+    Analyze Results: You can plot the position vs. time and compare the stability of the Euler and Velocity-Verlet methods.
