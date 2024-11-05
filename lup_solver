@@ -1,0 +1,62 @@
+#lup_solver
+
+This lup_solver module provides a routine for solving a system of linear equations Ax=bAx=b using LUP decomposition (LU decomposition with partial pivoting). It’s structured to handle non-singular square matrices and is efficient for solving large systems where pivoting is necessary for numerical stability. Here’s a breakdown of the code and how it works:
+Explanation of solve_lup Subroutine:
+
+   # Input Validation:
+        The subroutine first checks that the matrix a is square and that its dimensions match the vector b. If not, it stops execution with a "dimension error" message.
+
+    #LUP Decomposition:
+        The routine performs an LUP decomposition on the input matrix a:
+            Partial Pivoting: For each column, it finds the row with the largest absolute value in the current column (to avoid dividing by small numbers) and swaps rows if needed.
+            LU Decomposition: lu(i,j) is calculated as the ratio between the current row and pivot row elements, storing the result in a single matrix that combines the L and U components in compact form.
+            Error Handling: If a near-zero pivot element is detected (signaling a singular matrix), it halts with an error message.
+
+   #Forward and Backward Substitution:
+        The solution vector x is permuted according to the pivot vector p.
+        Forward Substitution: Solves Ly=PbLy=Pb, where L is the lower triangular matrix obtained in decomposition, and P is the permutation matrix.
+        Backward Substitution: Solves Ux=yUx=y to obtain the solution vector x.
+
+    #Error Tolerance:
+        eps is used as a threshold to check for near-zero pivots, reducing the risk of numerical instability in the presence of very small pivot values.
+
+    #Memory Management:
+        Allocates and deallocates memory dynamically for the LU matrix, permutation vector, and temporary storage, ensuring the routine is efficient in terms of memory usage.
+
+#How to Use the Module:
+
+    Compile the Module:
+        Compile the module and link it with any program that requires it.
+
+    Call the solve_lup Subroutine:
+        Declare the matrix a, vector b, and solution vector x in your program. Then call solve_lup(a, b, x).
+
+   # Example Usage:
+
+    fortran
+
+    PROGRAM test_lup
+       USE lup_solver
+       IMPLICIT NONE
+       REAL, DIMENSION(3,3) :: A
+       REAL, DIMENSION(3) :: b, x
+
+       ! Define A matrix and b vector
+       A = RESHAPE([3.0, 1.0, 2.0, &
+                    6.0, 3.0, 4.0, &
+                    3.0, 1.0, 5.0], [3,3])
+       b = [5.0, 12.0, 7.0]
+
+       ! Solve the system Ax = b
+       CALL solve_lup(A, b, x)
+
+       ! Output the solution
+       PRINT*, 'Solution x:', x
+    END PROGRAM test_lup
+
+#Notes:
+
+    Pivoting: The routine uses partial pivoting, which helps maintain numerical stability but isn’t suitable for all matrix types, especially highly singular or ill-conditioned matrices.
+    Efficiency: Although this is a "naive" implementation, it’s sufficient for most general applications and demonstrates the fundamentals of LUP decomposition.
+
+This module provides a solid foundation for linear system solutions and can be integrated into larger applications that require efficient and robust equation solving.
