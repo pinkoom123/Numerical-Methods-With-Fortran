@@ -1,0 +1,43 @@
+#Hubble constant H0
+
+This program estimates the Hubble constant H0H0​ from observed data of galaxy distances and recession velocities using a linear fit. It reads the data from a file, performs the linear regression, calculates standard errors, and outputs results. Here's a breakdown of each section:
+Code Explanation:
+
+    #Data Reading:
+        The program reads data for galaxy distances (d) and velocities (s) from hubble_data.txt.
+        N = 15 assumes there are 15 data points in the file. This value can be adjusted if needed.
+
+    #Linear Fit Calculation:
+        Sets up a system of equations AX=BAX=B for the linear fit.
+        Matrix AA is based on the sums of distances and their squares, while BB holds sums of velocities and the products of distances and velocities.
+        Solves for X, where X(1) is the intercept (β1β1​) and X(2) is the slope (β2β2​, the Hubble constant).
+
+   # Coefficient of Determination R2R2:
+        Computes R2R2 as a measure of fit quality by comparing the variance explained by the fit with the total variance in the data.
+
+   # Standard Errors for Parameters:
+        Calculates the standard errors for the slope and intercept, which are essential for assessing the reliability of β1β1​ and H0H0​.
+
+    #Output Results:
+        Writes the estimated parameters, their standard errors, and R2R2 to fit.txt.
+        Outputs key results to the console as well.
+
+#Output Example in fit.txt:
+
+#This file will have:
+
+    The estimated intercept (beta1).
+    The Hubble constant (beta2).
+    Standard errors for both parameters.
+    The coefficient of determination (R^2), which indicates the model's goodness of fit.
+
+#How to Run:
+
+    Prepare hubble_data.txt with columns for distances and speeds in the correct format.
+    Compile and run the program.
+    Check fit.txt for results and verify R^2 for a good fit.
+
+#Key Points:
+
+    R^2 Interpretation: Values closer to 1 indicate a better fit.
+    Standard Errors: Smaller errors indicate more reliable parameter estimates.
