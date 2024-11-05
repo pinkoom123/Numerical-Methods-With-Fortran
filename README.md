@@ -1,7 +1,9 @@
 # Numerical-Methods-With-Fortran
 Using Fortran to solve Numerical problems 
+
 #Monte Carlo Simulations in Fortran
-   This repository contains a collection of Fortran routines that use Monte Carlo methods to perform numerical      estimations. It includes subroutines for estimating the value of π and evaluating definite integrals, leveraging both the Hit-or-Miss and Crude Monte Carlo methods. The code also demonstrates the Rejection method for generating points from a specific distribution function.
+
+This repository contains a collection of Fortran routines that use Monte Carlo methods to perform numerical      estimations. It includes subroutines for estimating the value of π and evaluating definite integrals, leveraging both the Hit-or-Miss and Crude Monte Carlo methods. The code also demonstrates the Rejection method for generating points from a specific distribution function.
 
    #Key Features:
 
@@ -27,6 +29,6 @@ Using Fortran to solve Numerical problems
     Compile and run the program in a Fortran-compatible environment.
     Adjust the value of N in the main program to control the number of iterations or samples for each estimation.
 
-Sample Output:
+#Sample Output:
 
 The program prints estimated values of π and integrals to the console, while distribution_points.txt saves points for the specified distribution.
