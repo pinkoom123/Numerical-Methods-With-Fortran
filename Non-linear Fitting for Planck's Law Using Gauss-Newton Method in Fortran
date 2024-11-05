@@ -1,0 +1,34 @@
+#Non-linear Fitting for Planck's Law Using Gauss-Newton Method in Fortran
+
+This repository implements a non-linear least-squares fit for modeling spectral data according to Planck's law. Using the Gauss-Newton iterative method, the code optimizes two parameters (β1β1​ and β2β2​) to fit a spectral distribution from real data, estimating the temperature of a black body based on the input wavelength and intensity values.
+Key Components:
+
+   #Planck’s Law Model:
+        beta Function: Models the intensity distribution B(λ;β1,β2)B(λ;β1​,β2​) using Planck's law with wavelength (ww) and parameters β1β1​ and β2β2​.
+        Partial Derivatives: Calculates partial derivatives of the model with respect to β1β1​ and β2β2​, essential for constructing the Jacobian matrix used in the Gauss-Newton optimization.
+
+    #Gauss-Newton Optimization:
+        The program iteratively updates ββ values until convergence using the Gauss-Newton method.
+        Convergence Criteria: The iterative process stops when the sum of squared changes in ββ values is below a defined threshold (epsilon).
+        Temperature Estimation: Based on the fitted value of β2β2​, the program calculates the temperature of the black body using the relationship T=constant/β2T=constant/β2​.
+
+    #Data and Output:
+        Input Data: The program reads wavelength and intensity data from a file (sun_data.txt).
+        Output: Estimated parameter values, standard errors, variance of the residuals, and the temperature are saved in fitt.txt. A plot of the fitted model versus the actual data points is also generated and saved as Non-Linear_graph.png.
+
+#Files:
+
+    non_linear_fit.f90: Main code file containing subroutines for model computation, partial derivatives, and Gauss-Newton fitting procedure.
+    sun_data.txt: Input file with experimental data of wavelength and intensity values.
+    fitt.txt: Output file with the results, including parameter estimates, error analysis, and temperature.
+    Non-Linear_graph.png: Plot comparing the actual spectral data with the fitted Planck model.
+
+#Instructions for Use:
+
+    Compile and Run: Compile the Fortran code and run the program in an environment with access to sun_data.txt.
+    Adjust Parameters: You can adjust N for the number of data points and alpha (step size) for tuning the convergence behavior.
+    Output: Check fitt.txt for the final parameter values, temperature estimate, and error analysis.
+
+#Sample Output
+
+The program outputs key information to the console and saves detailed results in fitt.txt. You’ll see estimates for β1β1​ and β2β2​, along with their standard errors, error variance, and temperature calculation in Kelvin
